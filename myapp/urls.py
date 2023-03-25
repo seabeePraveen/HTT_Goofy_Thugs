@@ -7,5 +7,8 @@ urlpatterns = [
     path('signup',views.signup,name='signup'),
     path('home',views.home,name='home'),
     path('logoutpage',views.logoutpage,name='logoutpage'),
-    path('forgot',views.forgot,name='forgot')
+    path('forgot',views.forgot,name='forgot'),
+    path('subscribe',views.subscribe,name='subscribe'),
+    path('charges',views.charges,name='charges'),
+    path('success/<str:args>/',views.successmsg,name='successmsg')
 ]

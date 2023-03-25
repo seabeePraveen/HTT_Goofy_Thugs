@@ -7,14 +7,82 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body style="background-image: url('{% static 'bg2_salads.jpg' %}');">
-    
-    
-  <div class="container">
-    <div class="title">Registration</div>
+  <header class="header" data-header style="top: 0;">
+    <div class="container">
+      <a href="{% url 'index' %}" class="logo">
+        <img src="{% static 'logo.jpg' %}" width="150" height="70" alt="logo">
+      </a>
+      <nav class="navbar" data-navbar>
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="#" class="logo">
+          <img src="{% static 'logo.jpg' %}" width="150" height="70" alt="logo">
+        </a>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="#home" class="navbar-link hover-underline ">
+              <div class="separator"></div>
+
+              <span class="span">Home</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#menu" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Menus</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#about" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">About Us</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Plans</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Contact</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <a href="{% url 'loginpage' %}" class="btn btn-secondary">
+        <span class="text text-1">Login</span>
+        <span class="text text-2" aria-hidden="true">Sign UP</span>
+      </a>
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+  <div class="container1">
+    <div class="title1">Registration</div>
     {% for message in messages %}
     <h5 style="color:#7bc209">{{message}}</h5>
     {% endfor %}
-    <div class="content">
+    <div class="content1">
       <form action="signup" method="POST">
         {% csrf_token %}
         <div class="user-details">

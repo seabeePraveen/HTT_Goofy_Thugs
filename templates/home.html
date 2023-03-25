@@ -9,15 +9,20 @@
 <body>
     <a href="{% url 'logoutpage' %}">logout</a>
     <br>
-    <form action="charge" method="POST">
+    <form action="subscribe" method="POST">
         {% csrf_token %}
         <input type="hidden" name="type" value="1">
         <input type="submit" value="subscribe1">
     </form>
-    <form action="charge" method="POST">
+    <form action="subscribe" method="POST">
         {% csrf_token %}
         <input type="hidden" name="type" value="2">
         <input type="submit" value="subscribe2">
     </form>
 </body>
+<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-keys="{{key}}"
+    data-description="Payment GateWay"
+    data-amount="500"
+    data-locale="auto"></script>
 </html>

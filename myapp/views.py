@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.models import User,auth
 from . models import userdetails
 from django.contrib.auth import authenticate,login,logout
@@ -8,6 +8,12 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import Settings
 from random import randint
+from django.conf import settings
+import stripe
+from django.urls import reverse
+
+stripe.api_key
+stripe.api_key = "sk_test_51MpXZ8SJajCx9dubySNTtw5trymGETmPK47MbNGokGog6LfsGO0mWASC2NMr0xWIUE4aSoW6zQodbLNIRuQaY4gk009ph1d8vd"
 # Create your views here.
 
 
@@ -77,3 +83,22 @@ def forgot(request):
         fail_silently=False
     )
     return render(request,'index.html')
+
+def subscribe(request):
+    if request.method == 'POST':
+        if type == '1':
+            amount = 2000
+        elif type == '2':
+            amount = 7000
+        
+def charges(request):
+    if request.method == 'POST':
+        if type == '1':
+            amount = 2000
+        elif type == '2':
+            amount = 7000
+        return redirect(reverse('success',args=[amount]))
+    return render(request,'charges.html')
+
+def successmsg(request):
+    pass
