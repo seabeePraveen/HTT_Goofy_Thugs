@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
 *{
   margin: 0;
   padding: 0;
@@ -165,10 +166,6 @@ form .user-details .input-box{
 
 :root {
 
-	/**
-	 * COLORS
-	 */
-  
 	--gold-crayola: hsl(38, 61%, 73%);
 	--quick-silver: hsla(0, 0%, 65%, 1);
 	--davys-grey: hsla(30, 3%, 34%, 1);
@@ -185,22 +182,13 @@ form .user-details .input-box{
 	--black: hsla(0, 0%, 0%, 1);
 	--black-alpha-80: hsla(0, 0%, 0%, 0.8);
 	--black-alpha-15: hsla(0, 0%, 0%, 0.15);
-  
-	/**
-	 * GRADIENT COLOR
-	 */
-  
+ 
 	--loading-text-gradient: linear-gradient(90deg, transparent 0% 16.66%, var(--smoky-black-3) 33.33% 50%,  transparent 66.66% 75%);
 	--gradient-1: linear-gradient(to top,hsla(0, 0%, 0%, 0.9),hsla(0, 0%, 0%, 0.7),transparent);
-	/**
-	 * TYPOGRAPHY
-	 */
-  
-	/* font-family */
+
 	--fontFamily-forum: 'Forum', cursive;
 	--fontFamily-dm_sans: 'DM Sans', sans-serif;
-  
-	/* font-size */
+
 	--fontSize-display-1: calc(1.3rem + 6.7vw);
 	--fontSize-headline-1: calc(2rem + 2.5vw);
 	--fontSize-headline-2: calc(1.3rem + 2.4vw);
@@ -215,11 +203,9 @@ form .user-details .input-box{
 	--fontSize-label-1: 1.4rem;
 	--fontSize-label-2: 1.2rem;
   
-	/* font-weight */
 	--weight-regular: 400;
 	--weight-bold: 700;
   
-	/* line-height */
 	--lineHeight-1: 1em;
 	--lineHeight-2: 1.2em;
 	--lineHeight-3: 1.5em;
@@ -227,7 +213,6 @@ form .user-details .input-box{
 	--lineHeight-5: 1.85em;
 	--lineHeight-6: 1.4em;
   
-	/* letter-spacing */
 	--letterSpacing-1: 0.15em;
 	--letterSpacing-2: 0.4em;
 	--letterSpacing-3: 0.2em;

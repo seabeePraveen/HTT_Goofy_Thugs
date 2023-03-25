@@ -10,5 +10,6 @@ urlpatterns = [
     path('forgot',views.forgot,name='forgot'),
     path('subscribe',views.subscribe,name='subscribe'),
     path('charges',views.charges,name='charges'),
-    path('success/<str:args>/',views.successmsg,name='successmsg')
+    path('success/<str:args>/',views.successmsg,name='successmsg'),
+    path('menu',views.menu,name='menu')
 ]

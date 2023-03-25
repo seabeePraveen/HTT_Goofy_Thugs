@@ -84,6 +84,9 @@ def forgot(request):
     )
     return render(request,'index.html')
 
+def menu(request):
+    return render(request,'menu.html')
+
 def subscribe(request):
     if request.method == 'POST':
         if type == '1':
