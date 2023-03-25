@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import Settings
+from random import randint
 # Create your views here.
 
 
@@ -23,14 +24,14 @@ def loginpage(request):
             user = User.objects.get(username = username)
         except:
             messages.error(request,'User Doesnot exist')
-            return redirect('login')
+            return redirect('loginpage')
         user = authenticate(request,username=username,password=password)
         if user is not None:
             login(request,user)
             return redirect('home')
         else:
             messages.error(request,'Credentials doesnot matched')
-            return redirect('login')
+            return redirect('loginpage')
     return render(request,'login.html')
 
 def signup(request):
@@ -67,11 +68,12 @@ def logoutpage(request):
 
 def forgot(request):
     email = request.POST.get('email')
+    otp = randint(0000,9999)
     send_mail(
         'Contact Form',
-        'otp',
+        'Your OTP to reset password for Simple Salad '+str(otp),
         'settings.EMAIL_HOST_USER',
-        '[reciever email]',
+        [email],
         fail_silently=False
     )
     return render(request,'index.html')

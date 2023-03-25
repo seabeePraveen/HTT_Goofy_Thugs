@@ -7,6 +7,7 @@ class userdetails(models.Model):
     subscription = models.SmallIntegerField(default=0)
     user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
 
-
     def __str__(self):
         return str(self.user.username)
+    
+# monthly weekly start date, end date
