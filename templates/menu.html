@@ -29,7 +29,7 @@
             <ul class="navbar-list">
     
               <li class="navbar-item">
-                <a href="#home" class="navbar-link hover-underline active">
+                <a href="{% url 'index' %}" class="navbar-link hover-underline active">
                   <div class="separator"></div>
     
                   <span class="span">Home</span>
@@ -37,7 +37,7 @@
               </li>
     
               <li class="navbar-item">
-                <a href="#menu" class="navbar-link hover-underline">
+                <a href="{% url 'menu' %}" class="navbar-link hover-underline">
                   <div class="separator"></div>
     
                   <span class="span">Menus</span>
@@ -74,10 +74,10 @@
     
           </nav>
     
-          <a href="#" class="btn btn-secondary">
-            <span class="text text-1">Login / Sign Up</span>
+          <a href="{% url 'loginpage' %}" class="btn btn-secondary">
+            <span class="text text-1">Login</span>
     
-            <span class="text text-2" aria-hidden="true">Login / Sign Up</span>
+            <span class="text text-2" aria-hidden="true">Login</span>
           </a>
     
           <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
