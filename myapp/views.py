@@ -10,7 +10,9 @@ from django.contrib import messages
 def index(request):
     return render(request,'index.html')
 
-def login(request):
+def loginpage(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -22,7 +24,7 @@ def login(request):
         user = authenticate(request,username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect('index')
+            return redirect('home')
         else:
             messages.error(request,'Credentials doesnot matched')
             return redirect('login')
@@ -32,21 +34,26 @@ def signup(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
-        password1 = request.POST.get('password1')
+        password = request.POST.get('password1')
         password2 = request.POST.get('password2')
-        if password1 == password2:
+        if password == password2:
             if User.objects.filter(email=email).exists():
-                messages.error(request,"email already exists!")
+                messages.info(request,"Email id already exists")
                 return redirect('signup')
             else:
-                user = User.objects.create_user(username=username,email=email,password=password1)
+                user = User.objects.create_user(username = username, email = email, password=password)
                 user.save()
                 login(request,user)
-                return redirect('home')
+                return redirect('loginpage')
         else:
             messages.error(request,"passwords are not matched!")
             return redirect('signup')
     return render(request,'signup.html')
+
 @login_required(login_url='login')
 def home(request):
     return render(request,'home.html')
+
+def logoutpage(request):
+    logout(request)
+    return redirect('index')
