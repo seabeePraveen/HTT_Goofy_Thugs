@@ -2151,14 +2151,14 @@
     letter-spacing: var(--letterSpacing-5);
     max-width: max-content;
     border: 2px solid var(--gold-crayola);
-    padding: 12px 45px;
+    padding: 0px 45px;
     overflow: hidden;
     z-index: 1;
     justify-content: center;
     align-self: center;
   }
   
-  a .btn1 :hover{
-    background-color: green;
-    color:white
+  .btn1:hover{
+    background-color: #7fb550;
+    color:black;
   }
