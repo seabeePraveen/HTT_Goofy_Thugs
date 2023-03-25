@@ -1,32 +1,54 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" dir="ltr">
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup</title>
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body style="background-image: url('{% static 'bg2_salads.jpg' %}');">
+    
+    
+  <div class="container">
+    <div class="title">Registration</div>
     {% for message in messages %}
-    <h5>{{message}}</h5>
+    <h5 style="color:#7bc209">{{message}}</h5>
     {% endfor %}
-    <form action="signup" method="POST">
+    <div class="content">
+      <form action="signup" method="POST">
         {% csrf_token %}
-        <input type="text" placeholder="Enter username" name="username">
-        <br>
-        <input type="email" placeholder="Enter email ID" name="email">
-        <br>
-        <input type="number" placeholder="enter mobile number" name="mobile">
-        <br>
-        <input type="text" placeholder="enter address" name="address">
-        <br>
-        <input type="password" placeholder="Enter password" name="password1">
-        <br>
-        <input type="password" placeholder="Re-Enter password" name="password2">
-        <br>
-        <input type="submit" name="signup">
-    </form>
-    <br>
-    login here: <a href="{% url 'loginpage' %}">login</a>
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Username</span>
+            <input type="text" placeholder="Enter your username" name="username" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" placeholder="Enter your email" name="email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" placeholder="Enter your number" name="mobile" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" placeholder="Enter your password" name="password1" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input type="password" placeholder="Confirm your password" name="password2" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Address</span>
+            <input type="text" placeholder="Enter Your Address" name="address" class="new" >
+        </div>
+        </div>
+        
+        <div class="button">
+          <input type="submit" value="Signup">
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
