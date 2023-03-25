@@ -47,3 +47,6 @@ def signup(request):
             messages.error(request,"passwords are not matched!")
             return redirect('signup')
     return render(request,'signup.html')
+
+def home(request):
+    return render(request,'home.html')
