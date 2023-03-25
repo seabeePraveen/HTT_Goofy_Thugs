@@ -5,6 +5,8 @@ from . models import userdetails
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import Settings
 # Create your views here.
 
 
@@ -63,14 +65,13 @@ def logoutpage(request):
     logout(request)
     return redirect('index')
 
-def charge(request):
-    if request.method == 'POST':
-        if type == '1':
-            amount = 2000
-        elif type == '2':
-            amount = 7000
-        
-    return render(request,'charge.html')
-
-def sucess(request):
-    return render(request,'sucess.html')
+def forgot(request):
+    email = request.POST.get('email')
+    send_mail(
+        'Contact Form',
+        'otp',
+        'settings.EMAIL_HOST_USER',
+        '[reciever email]',
+        fail_silently=False
+    )
+    return render(request,'index.html')
