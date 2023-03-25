@@ -6,23 +6,21 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.conf import Settings
+from project.settings import RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY
 from random import randint
 from django.conf import settings
-import stripe
-from django.urls import reverse
-
-stripe.api_key
-stripe.api_key = "sk_test_51MpXZ8SJajCx9dubySNTtw5trymGETmPK47MbNGokGog6LfsGO0mWASC2NMr0xWIUE4aSoW6zQodbLNIRuQaY4gk009ph1d8vd"
+import razorpay,stripe
+from django.views.decorators.csrf import csrf_exempt
+client = razorpay.Client(auth=(RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY))
 # Create your views here.
-
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def index(request):
     return render(request,'index.html')
 
 def loginpage(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('index')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -34,7 +32,7 @@ def loginpage(request):
         user = authenticate(request,username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect('home')
+            return redirect('index')
         else:
             messages.error(request,'Credentials doesnot matched')
             return redirect('loginpage')
@@ -87,21 +85,41 @@ def forgot(request):
 def menu(request):
     return render(request,'menu.html')
 
+@login_required(login_url='loginpage')
 def subscribe(request):
     if request.method == 'POST':
-        if type == '1':
+        if type == '1' or type == 1:
             amount = 2000
-        elif type == '2':
+        else:
             amount = 7000
-        
-def charges(request):
-    if request.method == 'POST':
-        if type == '1':
-            amount = 2000
-        elif type == '2':
-            amount = 7000
-        return redirect(reverse('success',args=[amount]))
-    return render(request,'charges.html')
+        order_currency = 'INR'
+        context = {
+            'amount':amount
+        }
+        return render(request,'confirmpay.html',context)
+    #     payment_order = client.order.create(
+    #         {'amount':amount,'currency':order_currency,'payment_capture':'1'})
+    #     payment_order_id = randint(0,99999)
+    #     context = {
+    #         'amount':amount,'api_key':RAZORPAY_API_KEY,
+    #         'order_id':payment_order_id,
+    #         'type':type
+    #     }
+    #     return render(request,'confirmpay.html',context)
 
-def successmsg(request):
-    pass
+from django.views.generic.base import TemplateView
+@login_required(login_url='loginpage')
+class confirmpay(TemplateView):
+    template_name = 'confirmpage.html'
+
+    def get_content_data(self,**kwargs):
+        context = super().get_content_data(**kwargs)
+        context['key']=settings.STRIPE_PUBLISHABLE_KEY
+        return context
+
+@login_required(login_url='loginpage')
+def success(request):
+    if request.method == 'POST':
+        amount = request.POST.get('amount')
+        charge = stripe.Charge.create(amount=amount,currency='usd',description='Django charge',source = request.POST['stripeToken'])
+        return render(request,'success.html')

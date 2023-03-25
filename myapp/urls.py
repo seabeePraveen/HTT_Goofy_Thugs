@@ -9,7 +9,7 @@ urlpatterns = [
     path('logoutpage',views.logoutpage,name='logoutpage'),
     path('forgot',views.forgot,name='forgot'),
     path('subscribe',views.subscribe,name='subscribe'),
-    path('charges',views.charges,name='charges'),
-    path('success/<str:args>/',views.successmsg,name='successmsg'),
-    path('menu',views.menu,name='menu')
+    path('menu',views.menu,name='menu'),
+    path('confirmpay',views.confirmpay,name='confirmpay'),
+    path('success',views.success,name='success')
 ]

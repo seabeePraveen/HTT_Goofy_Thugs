@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>confirmation</title>
+</head>
+<body>
+    <div style="justify-content: center;align-items: center;">
+        <h5>Confirm pay?</h5>
+        amount = Rs. {{amount}}
+    </div>
+    <form action="{% url 'success'%}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="amount" value="{{amount}}">
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-keys="{{key}}"
+    data-description="Payment GateWay"
+    data-amount="{{amount}}"
+    data-locale="auto"></script>
+</form>
+</body>
+</html>
