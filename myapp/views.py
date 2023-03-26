@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
-from project.settings import RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY,STRIPE_SECRET_KEY,STRIPE_PUBLISHABLE_KEY
+from project.settings import RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY,STRIPE_SECRET_KEY,STRIPE_PUBLIC_KEY
 from random import randint
 from django.conf import settings
 import razorpay,stripe
@@ -110,21 +110,46 @@ def subscribe(request):
     #     return render(request,'confirmpay.html',context)
 
 from django.views.generic.base import TemplateView
-@login_required(login_url='loginpage')
-class confirmpay(TemplateView):
-    template_name = 'confirmpage.html'
+# class confirmpay(TemplateView):
+#     template_name = 'confirmpage.html'
 
-    def get_content_data(self,**kwargs):
-        context = super().get_content_data(**kwargs)
-        context['key']=STRIPE_PUBLISHABLE_KEY
-        return context
+#     def get_content_data(self,**kwargs):
+#         context = super().get_content_data(**kwargs)
+#         context['key']=STRIPE_PUBLIC_KEY
+#         return context
+@login_required(login_url='loginpage')
+# def confirmpay(request):
+#     stripe.api_key = settings.STRIPE_SECRET_KEY
+#     session = stripe.checkout.Session.create(
+#     line_items=[{
+#       'price_data': {
+#         'currency': 'usd',
+#         'product_data': {
+#           'name': 'T-shirt',
+#         },
+#         'unit_amount': 2000,
+#       },
+#       'quantity': 1,
+#     }],
+#     mode='payment',
+#     success_url=request.build_absolute_uri(reverse('success'))+'?session_id={CHECKOUT_SESSION_ID}',
+#     cancel_url=request.build_absolute_uri(reverse('home')),)
+#     return render(request,'confirmpay.html')
+
 
 @login_required(login_url='loginpage')
 def success(request):
-    if request.method == 'POST':
-        amount = request.POST.get('amount')
-        charge = stripe.Charge.create(amount=amount,currency='usd',description='Django charge',source = request.POST['stripeToken'])
-        return render(request,'success.html')
+    order_id = request.GET.get('order_id')
+    
+    cart = Cart.objects.get(razor_pay_order_id = order_id)
+    cart.is_paid = True
+    cart.save()
+    return HttpResponse('Payment Success')  
+# def success(request):
+#     if request.method == 'POST':
+#         amount = request.POST.get('amount')
+#         charge = stripe.Charge.create(amount=amount,currency='usd',description='Django charge',source = request.POST['stripeToken'])
+#         return render(request,'success.html')
     
 def plans(request):
     return render(request,'plans.html')

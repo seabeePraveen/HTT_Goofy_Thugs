@@ -14,11 +14,8 @@
     <form action="{% url 'success'%}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="amount" value="{{amount}}">
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-keys="{{key}}"
-    data-description="Payment GateWay"
-    data-amount="{{amount}}"
-    data-locale="auto"></script>
+        <button id="rzp-button1">paynow</button>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </form>
 </body>
 </html>
