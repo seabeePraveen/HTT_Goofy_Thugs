@@ -67,7 +67,7 @@ def signup(request):
                     return redirect('loginpage')
                 else:
                     messages.error(request,"we are not delevering to your location !")
-                    return redirect('signup')
+                    return redirect('signup') 
         else:
             messages.error(request,"passwords are not matched!")
             return redirect('signup')
@@ -179,10 +179,10 @@ def owner_login(request):
         else:
             messages.error(request,'Credentials doesnot matched')
             return redirect('owner_login')
-    return render(request,'admin_login.html')
+    return render(request,'owner_login.html')
 
 
-@login_required(login_url='admin_login')
+@login_required(login_url='owner_login')
 def owner(request):
     user = User.objects.all()
     user_details = userdetails.objects.all()
@@ -190,7 +190,7 @@ def owner(request):
         'users':user,
         'user_details':user_details
     }
-    return render(request,'admin.html',context)
+    return render(request,'owner.html',context)
 
 def logout_owner(request):
     logout(request)
