@@ -45,17 +45,29 @@ def signup(request):
         password2 = request.POST.get('password2')
         mobile = request.POST.get('mobile')
         address = request.POST.get('address')
+        pincode = request.POST.get('pincode')
         if password == password2:
             if User.objects.filter(email=email).exists():
                 messages.info(request,"Email id already exists")
                 return redirect('signup')
             else:
                 user = User.objects.create_user(username = username, email = email, password=password)
-                user.save()
-                login(request,user)
-                detailing = userdetails.objects.create(user=user,mobile=mobile,address=address)
-                detailing.save()
-                return redirect('loginpage')
+                pincodes = [
+                    "395007","320008"
+                ]
+                cond=0
+                for p in pincodes:
+                    if p == pincode:
+                        cond=1
+                if cond == 1:
+                    user.save()
+                    login(request,user)
+                    detailing = userdetails.objects.create(user=user,mobile=mobile,address=address)
+                    detailing.save()
+                    return redirect('loginpage')
+                else:
+                    messages.error(request,"we are not delevering to your location !")
+                    return redirect('signup')
         else:
             messages.error(request,"passwords are not matched!")
             return redirect('signup')

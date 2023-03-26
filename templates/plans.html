@@ -45,7 +45,7 @@
               </li>
     
               <li class="navbar-item">
-                <a href="#about" class="navbar-link hover-underline">
+                <a href="{% url 'index'%}" class="navbar-link hover-underline">
                   <div class="separator"></div>
     
                   <span class="span">About Us</span>
@@ -61,7 +61,7 @@
               </li>
     
               <li class="navbar-item">
-                <a href="#" class="navbar-link hover-underline">
+                <a href="{% url 'index'%}" class="navbar-link hover-underline">
                   <div class="separator"></div>
     
                   <span class="span">Contact</span>
@@ -96,7 +96,7 @@
       <br><br><br><br>
     <div class="bdy" style="padding-top:1%;height:88vh;overflow:scroll;background-image: url('{% static 'bg5.jpg'%}');">
       <div class="wrapper">
-        <div class="table basic" style="background:transparent;box-shadow:10px 24px 22px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.10);z-index:4">
+        <div class="table basic" style="background:transparent;box-shadow:10px 24px 22px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.10);">
           <div class="price-section">
             <div class="price-area">
               <div class="inner-area" style="color: black;">
@@ -124,8 +124,12 @@
               <!-- <span class="icon cross"><i class="fas fa-times"></i></span> -->
             </li>
           </ul>
-          <div class="subscribe-button"><button style="text-transform:uppercase">Subscribe</button></div>
-        </div>
+          <form action="subscribe" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="type" value="1">
+            <input type="submit" value="Subscribe" class="subscribe-button" style="text-transform:uppercase">
+          </form></h2>
+            </div>
 
         <div class="table ultimate" style="background:transparent;box-shadow:10px 24px 22px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
             <div class="price-section">
@@ -154,7 +158,11 @@
                 <span class="icon check"><i class="fas fa-check"></i></span>
               </li>
             </ul>
-            <div class="subscribe-button" ><button style="text-transform:uppercase">Subscribe</button></div>
+            <form action="subscribe" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="type" value="2">
+              <input type="submit" value="Subscribe" class="subscribe-button" style="text-transform:uppercase">
+            </form></h2>
           </div>
         </div>
     </div>

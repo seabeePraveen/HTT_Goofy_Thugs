@@ -26,7 +26,7 @@
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <a href="#home" class="navbar-link hover-underline ">
+            <a href="{% url 'index'%}" class="navbar-link hover-underline ">
               <div class="separator"></div>
 
               <span class="span">Home</span>
@@ -42,7 +42,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="#about" class="navbar-link hover-underline">
+            <a href="{% url 'index'%}" class="navbar-link hover-underline">
               <div class="separator"></div>
 
               <span class="span">About Us</span>
@@ -50,7 +50,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link hover-underline">
+            <a href="{% url 'plans'%}" class="navbar-link hover-underline">
               <div class="separator"></div>
 
               <span class="span">Plans</span>
@@ -58,7 +58,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link hover-underline">
+            <a href="{% url 'index'%}" class="navbar-link hover-underline">
               <div class="separator"></div>
 
               <span class="span">Contact</span>
@@ -111,6 +111,10 @@
           <div class="input-box">
             <span class="details">Address</span>
             <input type="text" placeholder="Enter Your Address" name="address" class="new" >
+          </div>
+          <div class="input-box">
+            <span class="details" style="">Pincode</span>
+            <input type="text" placeholder="Enter Pincode" name="pincode" class="new">
           </div>
         </div>
         

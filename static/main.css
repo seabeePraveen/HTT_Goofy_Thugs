@@ -332,7 +332,8 @@ body.nav-active { overflow: hidden; }
 
 .btn {
   position: relative;
-  color: var(--gold-crayola);
+  border-color: var(--gold-crayola);
+  color:black;
   font-size: var(--fontSize-label-2);
   font-weight: var(--weight-bold);
   text-transform: uppercase;

@@ -77,7 +77,7 @@
             <a href="{% url 'index' %}" class="navbar-link hover-underline active">
               <div class="separator"></div>
 
-              <span class="span">Home</span>
+              <span class="span" style="color:black;  font-size: larger;">Home</span>
             </a>
           </li>
 
@@ -85,7 +85,7 @@
             <a href="{% url 'menu' %}" class="navbar-link hover-underline">
               <div class="separator"></div>
 
-              <span class="span">Menu</span>
+              <span class="span" style="color:black;  font-size: larger;">Menu</span>
             </a>
           </li>
 
@@ -93,15 +93,15 @@
             <a href="#about" class="navbar-link hover-underline">
               <div class="separator"></div>
 
-              <span class="span">About Us</span>
+              <span class="span" style="color:black;  font-size: larger;">About Us</span>
             </a>
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link hover-underline">
+            <a href="{% url 'plans'%}" class="navbar-link hover-underline">
               <div class="separator"></div>
 
-              <span class="span">Plans</span>
+              <span class="span" style="color:black; font-size: larger;">Plans</span>
             </a>
           </li>
 
@@ -109,7 +109,7 @@
             <a href="#contact" class="navbar-link hover-underline">
               <div class="separator"></div>
 
-              <span class="span">Contact</span>
+              <span class="span" style="color:black;  font-size: larger;">Contact</span>
             </a>
           </li>
 
@@ -118,13 +118,13 @@
       </nav>
       {% if user.is_authenticated %}
       <a href="{% url 'logoutpage' %}" class="btn btn-secondary">
-        <span class="text text-1">logout</span>
-        <span class="text text-2" aria-hidden="true"></span>
+        <span class="text text-1">Logout</span>
+        <span class="text text-2" aria-hidden="true">Logout</span>
       </a>
       {% else %}
       <a href="{% url 'loginpage' %}" class="btn btn-secondary">
         <span class="text text-1">login</span>
-        <span class="text text-2" aria-hidden="true"></span>
+        <span class="text text-2" aria-hidden="true">Login</span>
       </a>
       {% endif %}
       <!-- <div class="dropdown">
@@ -154,9 +154,9 @@
           <li class="slider-item active" data-hero-slider-item >
 
             <div class="slider-bg">
-              <img src="{% static 'bg8.jpg' %}" width="1880" height="950" alt="" class="img-cover">
+              <img src="{% static 'bg10.jpg' %}" width="1880" height="950" alt="" class="img-cover">
             </div>
-            <p class="label-2 section-subtitle slider-reveal">Tradational & Hygine</p>
+            <p class="label-2 section-subtitle slider-reveal" style="font-size: 150%; font-weight: bolder; color: #7fb550;">The Simply Salad</p>
             <h1 class="display-1 hero-title slider-reveal" style="color: black;">
               For the love of <br>
               delicious food
@@ -164,16 +164,16 @@
             <p class="body-2 hero-text slider-reveal">
               Come with family & feel the joy of mouthwatering food
             </p>
-            <a href="{% url 'menu' %}" class="btn btn-primary slider-reveal">
-              <span class="text text-1">View Our Menu</span>
-              <span class="text text-2" aria-hidden="true">View Our Menu</span>
+            <a href="{% url 'menu' %}" class="btn btn-primary slider-reveal"  style="background-color: #7fb550;">
+              <span class="text text-1" style="background-color: C">View Our Menu</span>
+              <span class="text text-2" aria-hidden="true" style="color:white;">View Our Menu</span>
             </a>
           </li>
           <li class="slider-item" data-hero-slider-item>
             <div class="slider-bg">
-              <img src="{% static 'bg10.jpg'%}" width="1880" height="950" alt="" class="img-cover">
+              <img src="{% static 'bg8.jpg'%}" width="1880" height="950" alt="" class="img-cover">
             </div>
-            <p class="label-2 section-subtitle slider-reveal">delightful experience</p>
+            <p class="label-2 section-subtitle slider-reveal" style="font-size: 150%; font-weight: bolder; color: black;">The Simply Salad</p>
             <h1 class="display-1 hero-title slider-reveal" style="color: black;">
               Flavors Inspired by <br>
               the Seasons
@@ -181,16 +181,16 @@
             <p class="body-2 hero-text slider-reveal">
               Come with family & feel the joy of mouthwatering food
             </p>
-            <a href="{% url 'menu' %}" class="btn btn-primary slider-reveal">
-              <span class="text text-1">View Our Menu</span>
-              <span class="text text-2" aria-hidden="true">View Our Menu</span>
+            <a href="{% url 'menu' %}" class="btn btn-primary slider-reveal" style="background-color: #7fb550;">
+              <span class="text text-1" style="background-color: #7fb550;">View Our Menu</span>
+              <span class="text text-2" aria-hidden="true" style="color:white;">View Our Menu</span>
             </a>
           </li>
           <li class="slider-item" data-hero-slider-item>
             <div class="slider-bg">
               <img src="{% static 'bg9.jpg'%}" width="1880" height="950" alt="" class="img-cover">
             </div>
-            <p class="label-2 section-subtitle slider-reveal">amazing & delicious</p>
+            <p class="label-2 section-subtitle slider-reveal" style="font-size: 150%; font-weight: bolder; color: black;">The Simply Salad</p>
             <h1 class="display-1 hero-title slider-reveal" style="color: black;">
               Where every flavor <br>
               tells a story
@@ -198,9 +198,9 @@
             <p class="body-2 hero-text slider-reveal">
               Come with family & feel the joy of mouthwatering food
             </p>
-            <a href="{% url 'menu' %}" class="btn btn-primary slider-reveal">
-              <span class="text text-1">View Our Menu</span>
-              <span class="text text-2" aria-hidden="true">View Our Menu</span>
+            <a href="{% url 'menu' %}" class="btn btn-primary slider-reveal" style="background-color: #7fb550;">
+              <span class="text text-1" style="background-color: #7fb550;">View Our Menu</span>
+              <span class="text text-2" aria-hidden="true" style="color:white;">View Our Menu</span>
             </a>
           </li>
         </ul>
@@ -232,7 +232,7 @@
                   <h3 class="title-4 card-title">
                     <a href="#" style="text-transform:uppercase;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">combos</a>
                   </h3>
-                  <a href="#" class="btn-text hover-underline label-2">View Menu</a>
+                  <a href="{% url 'menu'%}" class="btn-text hover-underline label-2">View Menu</a>
                 </div>
               </div>
             </li>
@@ -248,7 +248,7 @@
                   <h3 class="title-4 card-title">
                     <a href="#" style="text-transform:uppercase;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">salads  </a>
                   </h3>
-                  <a href="#" class="btn-text hover-underline label-2">View Menu</a>
+                  <a href="{% url 'menu'%}" class="btn-text hover-underline label-2">View Menu</a>
                 </div>
               </div>
             </li>
@@ -264,7 +264,7 @@
                   <h3 class="title-4 card-title">
                     <a href="#" style="text-transform:uppercase;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">FRUIT BOWLS</a>
                   </h3>
-                  <a href="#" class="btn-text hover-underline label-2">View Menu</a>
+                  <a href="{% url 'menu' %}" class="btn-text hover-underline label-2">View Menu</a>
                 </div>
               </div>
             </li>
@@ -286,7 +286,7 @@
               it to make a type specimen book It has survived not only five centuries, but also the leap into.
             </p>
             <a href="#" class="btn btn-primary">
-              <span class="text text-1">Read More</span>
+              <span class="text text-1" style="color:white;">Read More</span>
               <span class="text text-2" aria-hidden="true">Read More</span>
             </a>
           </div>
@@ -312,7 +312,7 @@
               it to make a type specimen book It has survived not only five centuries, but also the leap into.
             </p>
             <a href="#" class="btn btn-primary">
-              <span class="text text-1">Read More</span>
+              <span class="text text-1" style="color:white;">Read More</span>
 
               <span class="text text-2" aria-hidden="true">Read More</span>
             </a>
