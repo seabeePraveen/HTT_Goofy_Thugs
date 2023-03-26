@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <link rel="stylesheet" href="{% static 'admin_login.css' %}">
+    <meta name="robots" content="noindex, follow">
+</head>
+
+<body>
+
+    <body id="particles-js"></body>
+    <div class="animated bounceInDown">
+        <div class="container">
+            <span class="error animated tada" id="msg"></span>
+            <form name="form1" class="box" onsubmit="return checkStuff()" method="post" action="login">
+                {% csrf_token %}
+                <h4>Admin<span>Dashboard</span></h4>
+                <h5>Sign in to your account.</h5>
+                <input type="text" name="email" placeholder="Email" autocomplete="off">
+                <i class="typcn typcn-eye" id="eye"></i>
+                <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off">
+                <label>
+                    <input type="checkbox">
+                    <span></span>
+                    <small class="rmb">Remember me</small>
+                </label>
+                <a href="#" class="forgetpass">Forget Password?</a>
+                <input type="submit" value="Sign in" class="btn1">
+            </form>
+        </div>
+    </div>
+    <script src="{ % static 'admin_login.js' %}"></script>
+</body>
+
+</html>

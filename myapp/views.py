@@ -12,7 +12,6 @@ from django.conf import settings
 import razorpay,stripe
 from django.views.decorators.csrf import csrf_exempt
 client = razorpay.Client(auth=(RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY))
-# Create your views here.
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def index(request):
@@ -110,15 +109,20 @@ def subscribe(request):
     #     return render(request,'confirmpay.html',context)
 
 from django.views.generic.base import TemplateView
-# class confirmpay(TemplateView):
-#     template_name = 'confirmpage.html'
-
-#     def get_content_data(self,**kwargs):
-#         context = super().get_content_data(**kwargs)
-#         context['key']=STRIPE_PUBLIC_KEY
-#         return context
 @login_required(login_url='loginpage')
+class confirmpay(TemplateView):
+    template_name = 'confirmpage.html'
+
+    def get_content_data(self,**kwargs):
+        context = super().get_content_data(**kwargs)
+        context['key']=STRIPE_PUBLIC_KEY
+        return context
 # def confirmpay(request):
+#     if request.method == 'POST':
+#         client = razorpay.Client(auth = (RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY))
+#         payment = client.order.create({'amount': '20000','currency':'INR','payment_capture':1})
+#         context = {'payment':payment}
+#         return render(request,'confirmpay.html',context)
 #     stripe.api_key = settings.STRIPE_SECRET_KEY
 #     session = stripe.checkout.Session.create(
 #     line_items=[{
@@ -139,17 +143,43 @@ from django.views.generic.base import TemplateView
 
 @login_required(login_url='loginpage')
 def success(request):
-    order_id = request.GET.get('order_id')
-    
-    cart = Cart.objects.get(razor_pay_order_id = order_id)
-    cart.is_paid = True
-    cart.save()
-    return HttpResponse('Payment Success')  
-# def success(request):
-#     if request.method == 'POST':
-#         amount = request.POST.get('amount')
-#         charge = stripe.Charge.create(amount=amount,currency='usd',description='Django charge',source = request.POST['stripeToken'])
-#         return render(request,'success.html')
+    if request.method == 'POST':
+        amount = request.POST.get('amount')
+        charge = stripe.Charge.create(amount=amount,currency='usd',description='Django charge',source = request.POST['stripeToken'])
+        return render(request,'success.html')
     
 def plans(request):
     return render(request,'plans.html')
+
+def owner_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        try:
+            user = User.objects.get(username = username)
+        except:
+            messages.error(request,'Only owner can access this')
+            return redirect('owner_login')
+        user = authenticate(request,username=username,password=password)
+        if user is not None:
+            login(request,user)
+            return redirect('owner')
+        else:
+            messages.error(request,'Credentials doesnot matched')
+            return redirect('owner_login')
+    return render(request,'admin_login.html')
+
+
+@login_required(login_url='admin_login')
+def owner(request):
+    user = User.objects.all()
+    user_details = userdetails.objects.all()
+    context = {
+        'users':user,
+        'user_details':user_details
+    }
+    return render(request,'admin.html',context)
+
+def logout_owner(request):
+    logout(request)
+    return redirect('owner_login')
