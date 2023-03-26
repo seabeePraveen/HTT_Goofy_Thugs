@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'plans.css' %}">
+    <title>Document</title>
+</head>
+<body >
+    <header class="header" data>
+        <div class="container" >
+    
+          <a href="#" class="logo">
+            <img src="{% static 'logo.jpg'%}" width="160" height="50" alt="Grilli - Home">
+          </a>
+    
+          <nav class="navbar" data-navbar>
+    
+            <button class="close-btn" aria-label="close menu" data-nav-toggler>
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
+    
+            <!-- <a href="#" class="logo">
+              <img src="./assets/images/logo.svg" width="160" height="50" alt="Grilli - Home">
+            </a> -->
+    
+            <ul class="navbar-list">
+    
+              <li class="navbar-item">
+                <a href="{% url 'index'%}" class="navbar-link hover-underline">
+                  <div class="separator"></div>
+    
+                  <span class="span">Home</span>
+                </a>
+              </li>
+    
+              <li class="navbar-item">
+                <a href="{% url 'menu' %}" class="navbar-link hover-underline">
+                  <div class="separator"></div>
+    
+                  <span class="span">Menu</span>
+                </a>
+              </li>
+    
+              <li class="navbar-item">
+                <a href="#about" class="navbar-link hover-underline">
+                  <div class="separator"></div>
+    
+                  <span class="span">About Us</span>
+                </a>
+              </li>
+    
+              <li class="navbar-item">
+                <a href="{% url 'plans' %}" class="navbar-link hover-underline active">
+                  <div class="separator"></div>
+    
+                  <span class="span">Plans</span>
+                </a>
+              </li>
+    
+              <li class="navbar-item">
+                <a href="#" class="navbar-link hover-underline">
+                  <div class="separator"></div>
+    
+                  <span class="span">Contact</span>
+                </a>
+              </li>
+    
+            </ul>
+    
+          </nav>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logoutpage' %}" class="btn btn-secondary">
+            <span class="text text-1">Logout</span>
+            <span class="text text-2" aria-hidden="true">Logout</span>
+          </a>
+          {% else %}
+          <a href="{% url 'loginpage' %}" class="btn btn-secondary">
+            <span class="text text-1">Login</span>
+            <span class="text text-2" aria-hidden="true">Login</span>
+          </a>
+          {% endif %}
+    
+          <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+          </button>
+    
+          <div class="overlay" data-nav-toggler data-overlay></div>
+    
+        </div>
+      </header> 
+      <br><br><br><br>
+    <div class="bdy" style="padding-top:1%;height:88vh;overflow:scroll;background-image: url('{% static 'bg5.jpg'%}');">
+      <div class="wrapper">
+        <div class="table basic" style="background:transparent;box-shadow:10px 24px 22px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.10);z-index:4">
+          <div class="price-section">
+            <div class="price-area">
+              <div class="inner-area" style="color: black;">
+                <span class="text">Weekly</span>
+
+              </div>
+            </div>
+          </div>
+          <div class="package-name" style="border: 1px solid yellow;"></div>
+          <ul class="features" style="color: black;display:flex;flex-direction:column;justify-content:center">
+            <li>
+              <span class="list-name" style="text-transform:uppercase"><b>Lunch only </b></span>
+              <!-- <span class="icon check" style="text-transform:uppercase"><i class="fas fa-check"></i></span> -->
+            </li>
+            <li>
+              <span class="list-name" style="text-transform:uppercase"><b>6 Working days Delivery</b></span>
+              <!-- <span class="icon check"><i class="fas fa-check"></i></span> -->
+            </li>
+            <li>
+              <span class="list-name" style="text-transform:uppercase"><b>₹200 per each lunch </b></span>
+              <!-- <span class="icon cross"><i class="fas fa-times"></i></span> -->
+            </li>
+            <li>
+              <span class="list-name"></span>
+              <!-- <span class="icon cross"><i class="fas fa-times"></i></span> -->
+            </li>
+          </ul>
+          <div class="subscribe-button"><button style="text-transform:uppercase">Subscribe</button></div>
+        </div>
+
+        <div class="table ultimate" style="background:transparent;box-shadow:10px 24px 22px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="price-section">
+              <div class="price-area">
+                <div class="inner-area" style="color: black;">
+                  <span class="text" >Monthly</span>
+                </div>
+              </div>
+            </div>
+            <div class="package-name"></div>
+            <ul class="features" style="color: black;">
+              <li>
+                <span class="list-name" style="text-transform:uppercase"><b>Lunch Only</b></span>
+                <span class="icon check"><i class="fas fa-check"></i></span>
+              </li>
+              <li>
+                <span class="list-name" style="text-transform:uppercase"><b>24 Working days Delivery</b></span>
+                <span class="icon check"><i class="fas fa-check"></i></span>
+              </li>
+              <li>
+                <span class="list-name" style="text-transform:uppercase"><b>₹200 per lunch</b>   </span>
+                <span class="icon check"><i class="fas fa-check"></i></span>
+              </li>
+              <li>
+                <span class="list-name"></span>
+                <span class="icon check"><i class="fas fa-check"></i></span>
+              </li>
+            </ul>
+            <div class="subscribe-button" ><button style="text-transform:uppercase">Subscribe</button></div>
+          </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="{% static 'login.js'%}"></script>
+</html>

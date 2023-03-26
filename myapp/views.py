@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
-from project.settings import RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY
+from project.settings import RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY,STRIPE_SECRET_KEY,STRIPE_PUBLISHABLE_KEY
 from random import randint
 from django.conf import settings
 import razorpay,stripe
@@ -93,8 +93,10 @@ def subscribe(request):
         else:
             amount = 7000
         order_currency = 'INR'
+        # stripe.setPublishableKey(settings.STRIPE_PUBLIC_KEY)
         context = {
-            'amount':amount
+            'amount':amount,
+            'key':STRIPE_SECRET_KEY
         }
         return render(request,'confirmpay.html',context)
     #     payment_order = client.order.create(
@@ -114,7 +116,7 @@ class confirmpay(TemplateView):
 
     def get_content_data(self,**kwargs):
         context = super().get_content_data(**kwargs)
-        context['key']=settings.STRIPE_PUBLISHABLE_KEY
+        context['key']=STRIPE_PUBLISHABLE_KEY
         return context
 
 @login_required(login_url='loginpage')
@@ -123,3 +125,6 @@ def success(request):
         amount = request.POST.get('amount')
         charge = stripe.Charge.create(amount=amount,currency='usd',description='Django charge',source = request.POST['stripeToken'])
         return render(request,'success.html')
+    
+def plans(request):
+    return render(request,'plans.html')

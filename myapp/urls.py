@@ -11,5 +11,6 @@ urlpatterns = [
     path('subscribe',views.subscribe,name='subscribe'),
     path('menu',views.menu,name='menu'),
     path('confirmpay',views.confirmpay,name='confirmpay'),
-    path('success',views.success,name='success')
+    path('success',views.success,name='success'),
+    path('plans',views.plans,name='plans')
 ]
