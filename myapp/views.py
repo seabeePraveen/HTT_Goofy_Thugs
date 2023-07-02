@@ -11,7 +11,7 @@ from random import randint
 from django.conf import settings
 import razorpay,stripe
 from django.views.decorators.csrf import csrf_exempt
-client = razorpay.Client(auth=(RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY))
+# client = razorpay.Client(auth=(RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY))
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def index(request):
